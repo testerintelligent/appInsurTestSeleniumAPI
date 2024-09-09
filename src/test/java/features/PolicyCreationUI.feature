@@ -30,9 +30,3 @@ Feature: Policy creation scenarios
       | address       | policyType         | premium |
       | ChennaiPrince | Health Insurance   | 10089   |
       | ChennaiMEPZ   | Vechicle Insurance | 9089    |
-
-  @smoke_UI
-  @policy_UI
-  Scenario: Create a policy and validate the success message - REPORT SCREENSHOT CHECK
-    Given I login ReactApp using below credentials
-      | Username | test1@test.com |
