@@ -9,13 +9,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public abstract class ReactAppConfig {
     public WebDriver getDriver() {
-//        System.setProperty("webdriver.chrome.driver", "C:\\Users\\tg2631\\IdeaProjects\\ReactApp_RestAPI\\src\\main\\resources\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\tg2631\\IdeaProjects\\ReactApp_RestAPI\\src\\main\\resources\\chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
 //        chromeOptions.addArguments("--remote-allow-origins=*");
 //        WebDriverManager.chromedriver().setup();
-            WebDriver driver = new ChromeDriver(chromeOptions);
-            String userAgent = (String) ((JavascriptExecutor) driver).executeScript("return navigator.userAgent;");
-            System.out.println("Chrome version " + userAgent);
+        WebDriver driver = new ChromeDriver(chromeOptions);
+        String userAgent = (String) ((JavascriptExecutor) driver).executeScript("return navigator.userAgent;");
+        System.out.println("Chrome version " + userAgent);
 
         driver.manage().window().maximize();
         driver.get("http://192.168.99.141:3000/");
