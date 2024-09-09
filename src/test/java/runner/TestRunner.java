@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
                 "junit:target/xml-report.xml"
         },
         monochrome = true,
-        tags = "@smoke"
+        tags = "@smoke or @smoke_UI"
 )
 
 public class TestRunner {
