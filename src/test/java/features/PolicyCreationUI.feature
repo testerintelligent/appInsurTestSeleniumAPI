@@ -31,7 +31,7 @@ Feature: Policy creation scenarios
       | ChennaiPrince | Health Insurance   | 10089   |
       | ChennaiMEPZ   | Vechicle Insurance | 9089    |
 
-  @smoke_UI
+  @smoke_UI_negative
   @policy_UI
   Scenario: Create a policy and validate the success message - NEGATIVE CHECK FOR REPORT
     Given I login ReactApp using below credentials
