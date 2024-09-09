@@ -30,7 +30,7 @@ Feature: Policy creation Rest API
     Given I have created 10 policies
 
   @smoke
-  Scenario Outline: Create a new policies using POST method and validate response code
+  Scenario Outline: Create multiple policies with data combination using POST method and validate response code
     Given I have the following policy details
       | Name        | random       |
       | email       | random       |
