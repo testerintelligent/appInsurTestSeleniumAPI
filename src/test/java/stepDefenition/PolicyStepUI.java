@@ -5,6 +5,9 @@ import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.InsurancePolicyDetailsPage;
@@ -12,6 +15,10 @@ import pages.LoginPage;
 import utility.Reusable_functions;
 
 import java.util.Map;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 
 public class PolicyStepUI extends ReactAppConfig {
     LoginPage loginPage;
@@ -20,7 +27,22 @@ public class PolicyStepUI extends ReactAppConfig {
     Reusable_functions reusableFunctions = new Reusable_functions();
 
     @After("@smoke_UI")
-    public void afterScenario() {
+    public void afterScenario(Scenario scenario) {
+        if (scenario.isFailed()) {
+            // Capture screenshot
+            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+
+            // Save screenshot to file
+            File screenshotFile = new File("target/screenshots/" + scenario.getName() + ".png");
+            screenshotFile.getParentFile().mkdirs(); // Create directories if not exist
+
+            try (FileOutputStream fos = new FileOutputStream(screenshotFile)) {
+                fos.write(screenshot);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         if (driver != null) {
             insurancePolicyDetailsPage = new InsurancePolicyDetailsPage(driver);
             insurancePolicyDetailsPage.logout();
