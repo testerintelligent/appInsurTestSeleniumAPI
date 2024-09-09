@@ -29,23 +29,14 @@ public class PolicyStepUI extends ReactAppConfig {
     @After("@smoke_UI")
     public void afterScenario(Scenario scenario) {
         if (scenario.isFailed()) {
-            // Capture screenshot
-            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            // Take a screenshot in case of failure
+            final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 
-            // Save screenshot to file
-            File screenshotFile = new File("target/screenshots/" + scenario.getName() + ".png");
-            screenshotFile.getParentFile().mkdirs(); // Create directories if not exist
-
-            try (FileOutputStream fos = new FileOutputStream(screenshotFile)) {
-                fos.write(screenshot);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (driver != null) {
-            insurancePolicyDetailsPage = new InsurancePolicyDetailsPage(driver);
-            insurancePolicyDetailsPage.logout();
+            // Attach the screenshot to the Cucumber report
+            scenario.attach(screenshot, "image/png", "Failure Screenshot");
+            driver.close();
+            driver.quit();
+        } else {
             driver.close();
             driver.quit();
         }
