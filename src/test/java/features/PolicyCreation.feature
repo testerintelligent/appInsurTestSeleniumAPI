@@ -16,6 +16,7 @@ Feature: Policy creation Rest API
     And the response body should contain "Insurance policy created successfully."
 
   @smoke
+  @login
   Scenario: Validate login using POST method and validate response code
     Given I have the following login details
       | username | test@test.com |
@@ -24,7 +25,7 @@ Feature: Policy creation Rest API
     Then the response code should be 200
     And the response body should contain "valid email or password"
 
-  @smoke
+  @smoke_performance
   Scenario: Create bulk policies for load test
     Given I have created 10 policies
 
