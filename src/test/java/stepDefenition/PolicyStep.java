@@ -8,7 +8,7 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import utility.Reusable_functions;
+import utility.FunctionLibrary;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,8 +16,8 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 
-public class PolicyStep extends Reusable_functions {
-    private static final Log log = LogFactory.getLog(PolicyStep.class);
+public class PolicyStep extends FunctionLibrary {
+        private static final Log log = LogFactory.getLog(PolicyStep.class);
     private Map<String, String> policyDetails;
     private Response response;
 
@@ -32,6 +32,7 @@ public class PolicyStep extends Reusable_functions {
         if (policyDetails.get("email") != null && policyDetails.get("email").equalsIgnoreCase("random")) {
             policyDetails.replace("email", generateRandomEmail());
         }
+
         log.info(policyDetails);
     }
 

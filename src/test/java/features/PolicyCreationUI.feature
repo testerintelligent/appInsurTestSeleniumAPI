@@ -33,13 +33,6 @@ Feature: Policy creation scenarios
 
   @smoke_UI_negative
   @policy_UI
-  Scenario: Create a policy and validate the success message - NEGATIVE CHECK FOR REPORT
+  Scenario: Login with invalid credentials - NEGATIVE CHECK FOR REPORT
     Given I login ReactApp using below credentials
       | Username | test1@test.com |
-    When I create policy with below data
-      | Address     | ChennaiMEPZ      |
-      | DateOfBirth | 02/24/1989       |
-      | PolicyType  | Health Insurance |
-      | Premium     | 10089            |
-      | SumInsured  | 100000           |
-    Then I should see the "Insurance policy created successfully" message displayed

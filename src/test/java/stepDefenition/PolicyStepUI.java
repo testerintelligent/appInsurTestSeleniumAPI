@@ -1,6 +1,6 @@
 package stepDefenition;
 
-import Config.ReactAppConfig;
+import Config.ReactAppWebDriver;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
@@ -12,27 +12,29 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import pages.InsurancePolicyDetailsPage;
 import pages.LoginPage;
-import utility.Reusable_functions;
+import utility.FunctionLibrary;
 
 import java.util.Map;
 
-public class PolicyStepUI extends ReactAppConfig {
+public class PolicyStepUI extends ReactAppWebDriver {
     LoginPage loginPage;
     InsurancePolicyDetailsPage insurancePolicyDetailsPage;
     WebDriver driver = getDriver();
-    Reusable_functions reusableFunctions = new Reusable_functions();
+    FunctionLibrary reusableFunctions = new FunctionLibrary();
 
     @After("@smoke_UI")
     public void afterScenario(Scenario scenario) {
-        if (scenario.isFailed()) {
-            final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", "Failure Screenshot");
+        if (driver != null) {
+            if (scenario.isFailed()) {
+                final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+                scenario.attach(screenshot, "image/png", "Failure Screenshot");
 
-            driver.close();
-            driver.quit();
-        } else {
-            driver.close();
-            driver.quit();
+                driver.close();
+                driver.quit();
+            } else {
+                driver.close();
+                driver.quit();
+            }
         }
     }
 
