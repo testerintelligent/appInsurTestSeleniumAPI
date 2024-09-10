@@ -31,7 +31,7 @@ Feature: Policy creation scenarios
       | ChennaiPrince | Health Insurance   | 10089   |
       | ChennaiMEPZ   | Vechicle Insurance | 9089    |
 
-  @smoke_UI_negative
+  @smoke_UI_negativecheck
   @policy_UI
   Scenario: Login with invalid credentials - NEGATIVE CHECK FOR REPORT
     Given I login ReactApp using below credentials
