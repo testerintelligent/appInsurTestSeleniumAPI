@@ -2,23 +2,19 @@ package stepDefenition;
 
 import Config.ReactAppConfig;
 import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.Scenario;
+import org.junit.Assert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.InsurancePolicyDetailsPage;
 import pages.LoginPage;
 import utility.Reusable_functions;
 
 import java.util.Map;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.file.Files;
 
 public class PolicyStepUI extends ReactAppConfig {
     LoginPage loginPage;
@@ -29,11 +25,9 @@ public class PolicyStepUI extends ReactAppConfig {
     @After("@smoke_UI")
     public void afterScenario(Scenario scenario) {
         if (scenario.isFailed()) {
-            // Take a screenshot in case of failure
             final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-
-            // Attach the screenshot to the Cucumber report
             scenario.attach(screenshot, "image/png", "Failure Screenshot");
+
             driver.close();
             driver.quit();
         } else {
