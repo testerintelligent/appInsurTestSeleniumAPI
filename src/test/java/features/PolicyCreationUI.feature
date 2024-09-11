@@ -1,4 +1,4 @@
-Feature: Policy creation scenarios
+Feature: Policy Creation via WEB
 
   @smoke_UI
   @policy_UI

@@ -1,4 +1,4 @@
-Feature: Policy creation Rest API
+Feature: Policy Creation via API
 
   @smoke
   @policy
