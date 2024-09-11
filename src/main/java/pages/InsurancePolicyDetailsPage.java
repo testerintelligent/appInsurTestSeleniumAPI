@@ -1,6 +1,6 @@
 package pages;
 
-import Config.DriverComponents;
+import config.DriverComponents;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 

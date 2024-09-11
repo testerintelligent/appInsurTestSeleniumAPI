@@ -1,6 +1,6 @@
 package stepDefenition;
 
-import Config.ReactAppWebDriver;
+import config.ReactAppWebDriver;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
@@ -20,7 +20,7 @@ public class PolicyStepUI extends ReactAppWebDriver {
     LoginPage loginPage;
     InsurancePolicyDetailsPage insurancePolicyDetailsPage;
     WebDriver driver = getDriver();
-    FunctionLibrary reusableFunctions = new FunctionLibrary();
+    FunctionLibrary functionLibrary = new FunctionLibrary();
 
     @After("@smoke_UI")
     public void afterScenario(Scenario scenario) {
@@ -49,8 +49,8 @@ public class PolicyStepUI extends ReactAppWebDriver {
 
     @When("I create policy with below data")
     public void iCreatePolicyWithBelowData(Map<String, String> table) {
-        String name = table.get("Name") != null ? (table.get("Name")) : reusableFunctions.generateRandomName();
-        String email = table.get("email") != null ? table.get("email") : reusableFunctions.generateRandomEmail();
+        String name = table.get("Name") != null ? (table.get("Name")) : functionLibrary.generateRandomName();
+        String email = table.get("email") != null ? table.get("email") : functionLibrary.generateRandomEmail();
         String address = table.get("Address") != null ? table.get("Address") : "ChennaiMEPZ";
         String dateOfBirth = table.get("DateOfBirth") != null ? table.get("DateOfBirth").replace("/", "") : "02241989";
         String policyType = table.get("PolicyType") != null ? table.get("PolicyType") : "Health Insurance";

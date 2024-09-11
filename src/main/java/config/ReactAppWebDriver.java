@@ -1,4 +1,4 @@
-package Config;
+package config;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;

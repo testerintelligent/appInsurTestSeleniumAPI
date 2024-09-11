@@ -27,7 +27,7 @@ Feature: Policy creation Rest API
 
   @smoke_performance
   Scenario: Create bulk policies for load test
-    Given I have created 10 policies
+    Given I have created 5 policies in the endpoint "http://192.168.99.141:5000/Dashboard"
 
   @smoke
   Scenario Outline: Create multiple policies with data combination using POST method and validate response code

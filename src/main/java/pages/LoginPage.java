@@ -17,18 +17,21 @@ public class LoginPage {
     public LoginPage setUsername(String username) {
         driver.findElement(By.xpath(this.username))
                 .sendKeys(username);
+
         return this;
     }
 
     public LoginPage setPassword(String password) {
         driver.findElement(By.xpath(this.password))
                 .sendKeys(password);
+
         return this;
     }
 
     public LoginPage clickSubmit() {
         driver.findElement(By.xpath(submit))
                 .click();
+
         return this;
     }
 

@@ -1,4 +1,4 @@
-package Config;
+package config;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +14,7 @@ public class DriverComponents extends ReactAppWebDriver {
         this.driver = driver;
     }
 
-    public void waitForVisibilityOfElement(By by,int seconds) {
+    public void waitForVisibilityOfElement(By by, int seconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }

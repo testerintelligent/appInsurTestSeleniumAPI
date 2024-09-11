@@ -17,7 +17,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 
 public class PolicyStep extends FunctionLibrary {
-        private static final Log log = LogFactory.getLog(PolicyStep.class);
+    private static final Log log = LogFactory.getLog(PolicyStep.class);
     private Map<String, String> policyDetails;
     private Response response;
 
@@ -47,21 +47,23 @@ public class PolicyStep extends FunctionLibrary {
 
     @Then("the response code should be {int}")
     public void the_response_code_should_be(int expectedStatusCode) {
-        response.then().statusCode(expectedStatusCode);
+        response.then()
+                .statusCode(expectedStatusCode);
 
         log.info("Response status code: " + response.getStatusCode());
     }
 
     @And("the response body should contain {string}")
     public void theResponseBodyShouldContain(String expectedMessage) {
-        response.then().body("message", containsString(expectedMessage));
+        response.then()
+                .body("message", containsString(expectedMessage));
 
         log.info("Response Body below: ");
         response.then().log().body();
     }
 
-    @Given("I have created {int} policies")
-    public void iHaveCreatedPolicies(int count) {
+    @Given("I have created {int} policies in the endpoint {string}")
+    public void iHaveCreatedPoliciesInTheEndpoint(int count, String endPoint) {
         for (int i = 1; i <= count; i++) {
             policyDetails = new HashMap<>();
 
@@ -73,15 +75,18 @@ public class PolicyStep extends FunctionLibrary {
             policyDetails.put("Premium", "10089");
             policyDetails.put("SumInsured", "100000");
 
+            //Create policy
             response = given()
                     .header("Content-Type", "application/json")
                     .body(policyDetails)
                     .when()
-                    .post("http://192.168.99.141:5000/Dashboard");
+                    .post(endPoint);
 
+            //Status code validation
             the_response_code_should_be(201);
             log.info("Response status code: " + response.getStatusCode());
 
+            //Body response validation
             theResponseBodyShouldContain("Insurance policy created successfully.");
             log.info("Response Body below: ");
             response.then().log().body();
