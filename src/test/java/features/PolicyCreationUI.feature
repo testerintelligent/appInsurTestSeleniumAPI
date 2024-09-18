@@ -8,6 +8,7 @@ Feature: Policy Creation via WEB
     When I create policy with below data
       | Address     | ChennaiMEPZ      |
       | DateOfBirth | 02/24/1989       |
+      | Gender      | Male             |
       | PolicyType  | Health Insurance |
       | Premium     | 10089            |
       | SumInsured  | 100000           |
@@ -27,9 +28,9 @@ Feature: Policy Creation via WEB
     Then I should see the "Insurance policy created successfully." message displayed
 
     Examples:
-      | address       | policyType         | premium |
-      | ChennaiPrince | Health Insurance   | 10089   |
-      | ChennaiMEPZ   | Vechicle Insurance | 9089    |
+      | address       | policyType        | premium |
+      | ChennaiPrince | Health Insurance  | 10089   |
+      | ChennaiMEPZ   | Vehicle Insurance | 9089    |
 
   @smoke_UI_negativecheck
   @policy_UI

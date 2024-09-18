@@ -11,7 +11,6 @@ public class InsurancePolicyDetailsPage extends DriverComponents {
     private String email = "//input[@id='email']";
     private String address = "//input[@id='Address']";
     private String dateOfBirth = "//input[@id='DateOfBirth']";
-    private String policyType = "//select[@name='PolicyType']";
     private String sumInsured = "//select[@name='SumInsured']";
     private String premium = "//input[@name='Premium']";
     private String submit = "//button[@type='submit']";
@@ -53,9 +52,16 @@ public class InsurancePolicyDetailsPage extends DriverComponents {
         return this;
     }
 
+    public InsurancePolicyDetailsPage setGender(String gender) {
+        driver.findElement(By.xpath("//div[@class='form-group']//descendant::div//input[@type='radio' and @value='" + gender + "']"))
+                .click();
+
+        return this;
+    }
+
     public InsurancePolicyDetailsPage setPolicyType(String policyType) {
-        driver.findElement(By.xpath(this.policyType))
-                .sendKeys(policyType);
+        driver.findElement(By.xpath("//div[@class='form-group']//descendant::div//input[@type='checkbox' and @value='" + policyType + " ']"))
+                .click();
 
         return this;
     }

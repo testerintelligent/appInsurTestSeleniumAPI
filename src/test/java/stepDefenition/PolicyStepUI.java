@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import pages.DashboardPage;
 import pages.InsurancePolicyDetailsPage;
 import pages.LoginPage;
 import utility.FunctionLibrary;
@@ -19,6 +20,7 @@ import java.util.Map;
 public class PolicyStepUI extends ReactAppWebDriver {
     LoginPage loginPage;
     InsurancePolicyDetailsPage insurancePolicyDetailsPage;
+    DashboardPage dashboardPage;
     WebDriver driver = getDriver();
     FunctionLibrary functionLibrary = new FunctionLibrary();
 
@@ -53,9 +55,14 @@ public class PolicyStepUI extends ReactAppWebDriver {
         String email = table.get("email") != null ? table.get("email") : functionLibrary.generateRandomEmail();
         String address = table.get("Address") != null ? table.get("Address") : "ChennaiMEPZ";
         String dateOfBirth = table.get("DateOfBirth") != null ? table.get("DateOfBirth").replace("/", "") : "02241989";
+        String gender = table.get("Gender") != null ? table.get("Gender") : "Male";
         String policyType = table.get("PolicyType") != null ? table.get("PolicyType") : "Health Insurance";
         String sumInsured = table.get("SumInsured") != null ? table.get("SumInsured") : "5,00,000";
         String premium = table.get("Premium") != null ? table.get("Premium") : "11889";
+
+        dashboardPage = new DashboardPage(driver);
+
+        dashboardPage.clickCreateNewInsurance();
 
         insurancePolicyDetailsPage = new InsurancePolicyDetailsPage(driver);
 
@@ -63,6 +70,7 @@ public class PolicyStepUI extends ReactAppWebDriver {
                 .setEmail(email)
                 .setAddress(address)
                 .setDateOfBirth(dateOfBirth)
+                .setGender(gender)
                 .setPolicyType(policyType)
                 .setSumInsured(sumInsured)
                 .setPremium(premium)
